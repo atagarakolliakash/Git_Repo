@@ -1,0 +1,25 @@
+{
+  "name": "Akash Atagarakolli",
+  "location": "Andhra Pradesh, India",
+  "headline": "Senior Database Administrator",
+  "about": "With nearly 9 years of experience, I am a results-driven Senior Database Administrator.",
+  "experience": [
+    {
+      "company": "AWC Software",
+      "role": "Senior Database Administrator",
+      "description": "Database administration, performance tuning, backup and recovery, monitoring, and production support."
+    }
+  ],
+  "skills": [
+    "SQL Server",
+    "PostgreSQL",
+    "MySQL",
+    "Performance Tuning",
+    "Backup and Recovery"
+  ],
+  "certifications": [],
+  "projects": [],
+  "featured": [],
+  "recommendations": [],
+  "recent_posts": []
+}
