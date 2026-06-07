@@ -1,0 +1,30 @@
+{
+  "name": "Akash Atagarakolli",
+  "profile_url": "https://www.linkedin.com/in/akash-atagarakolli/",
+  "location": "Andhra Pradesh, India",
+  "followers": 436,
+  "connections": 430,
+  "headline": "Senior Database Administrator",
+  "about": "With nearly 9 years of experience, I am a results-driven Senior Database Administrator.",
+  "experience": [
+    {
+      "company": "AWC Software",
+      "role": "Senior Database Administrator",
+      "description": "Database administration, production support, performance tuning, backup and recovery, monitoring, and reliability work."
+    }
+  ],
+  "skills": [
+    "SQL Server",
+    "PostgreSQL",
+    "MySQL",
+    "Performance Tuning",
+    "Backup and Recovery",
+    "Database Administration"
+  ],
+  "certifications": [],
+  "projects": [],
+  "featured": [],
+  "recommendations": [],
+  "recent_posts": [],
+  "activity_notes": "Public activity currently appears to show more reactions/likes than original expert posting."
+}

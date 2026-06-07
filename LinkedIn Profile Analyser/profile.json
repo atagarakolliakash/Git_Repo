@@ -1,0 +1,75 @@
+{
+  "name": "Akash Atagarakolli",
+  "profile_url": "https://www.linkedin.com/in/akash-atagarakolli/",
+  "location": "Andhra Pradesh, India",
+  "followers": 436,
+  "connections": 430,
+  "headline": "Delivery Module Lead",
+  "about": "With nearly 9 years of experience, I am a Results-driven Senior Database Administrator specializing in bridging technical execution with strategic business objectives. My expertise lies in managing Very Large Databases (VLDBs) up to 10TB and architecting resilient cloud data warehousing solutions using SQL Server, AWS S3, and Amazon Redshift. Currently, I architect enterprise-grade data warehouses and engineer resilient ETL pipelines utilizing Boto3, AWS Glue, and AWS Lambda to enforce data governance and mitigate corporate risk. My technical leadership is defined by a proven track record of optimizing infrastructure to reduce Total Cost of Ownership (TCO) and achieving a 60% improvement in application responsiveness through advanced performance tuning. In my standout achievement, the Medtech Evolution project, I architected secure healthcare databases for global markets, achieving 100% data accuracy during zero-downtime migrations while boosting query response speeds by 30%. I am an expert in implementing Medallion architectures and ensuring enterprise-grade Business Continuity and Disaster Recovery (BCDR) to meet strict corporate SLAs. Accomplished in cross-functional leadership, I have successfully directed high-performance teams to execute over 1,500 customer data migrations and legacy system conversions under aggressive timelines. My technical stack is further complemented by a background in Electronics and Telecommunication Engineering, providing a strong analytical foundation for solving complex data integration challenges.",
+  "experience": [
+    {
+      "company": "Mphasis Ltd",
+      "role": "Delivery Module Lead",
+      "description": "TLM, EOL, Data Architect, Data Engineer, Data Migration, Data Warehouse, ETL, BCDR, Medallion Architecture, AWS S3, Amazon Redshift, AWS Glue, AWS Lambda, Boto3, SQL Server, Performance Tuning, Disaster Recovery, Data Governance."
+    },
+    {
+      "company": "AWC Software",
+      "role": "Senior Data Engineer",
+      "description": "Designed and architected innovative data warehouse solutions, enhancing data management efficiency and scalability. - Developed and implemented robust data pipelines, ensuring high integrity and significantly reducing the risk of data loss. - Modeled complex data structures utilizing advanced analytics to support data-driven decision-making processes. - Collaborated with cross-functional teams to optimize data flow, streamlining operational processes and improving productivity. - Defined and established Medalian architecture layers, facilitating cross-team adoption and enhancing the overall data framework."
+    },
+    {
+      "company": "Jean Martin Systems Pvt Ltd",
+      "role": "System Engineer",
+      "description": "Collaborate with end-users and department managers for capacity planning and long-term strategic goals for production databases - Work with application support staff in developing database architectures, coding standards, and quality assurance policies - Implement disaster recovery strategies ensuring high availability of databases, enhancing system reliability - Identify and resolve performance issues for optimized database performance and efficiency - Lead migration of SQL server Authentication to Windows Authentication across applications, improving security - Utilize DMVs, Performance Dashboard, and performance counters for database monitoring and optimization - Coordinate migration of project information from existing systems to new databases, facilitating accurate documentation - Perform extensive data verification to maintain high accuracy rates through quality control checks - Implement point-in-time recovery solutions and troubleshoot databases for peak performance - Recommend best practices for production databases and develop new solutions to meet requirements."
+    },
+    {
+      "company": "Inlogic Technologies Pvt Ltd",
+      "role": "Data Management Team Lead",
+      "description": "Designed, implemented, and maintained complex SQL Server databases, ensuring high availability, security, and scalability for critical OLTP systems across multiple environments. - Executed advanced performance tuning and query optimization strategies, achieving up to 60% improvement in application responsiveness for Very Large Databases (VLDBs). - Configured and managed Always On Availability Groups and SQL Server Replication, ensuring 24x7 uptime and data integrity. - Developed and automated routine maintenance procedures, backups, and monitoring processes using T-SQL and SQL Agent Jobs, significantly enhancing operational efficiency. - Provided 24x7 production database support, expertly resolving complex performance, replication, and failover issues within strict service level agreements (SLAs). - Streamlined data extraction and loading processes utilizing SQL and ETL tools, facilitating smoother data management workflows. - Implemented rigorous data quality checks, improving overall accuracy and reliability of datasets, and enhancing data integrity. - Monitored and optimized ETL workflows, addressing performance issues promptly to boost processing efficiency. - Trained junior developers on best practices in ETL development and data management, fostering knowledge transfer and skill enhancement within the team. - Documented processes and procedures for compliance and operational consistency, ensuring seamless knowledge sharing. - Resolved complex ETL process issues through meticulous debugging and development of new programs, leading to a 90% increase in legacy migration success with no data loss and 100% accuracy."
+    }
+  ],
+  "skills": [
+    "SQL Server",
+    "PostgreSQL",
+    "MySQL",
+    "Performance Tuning",
+    "Backup and Recovery",
+    "Database Administration",
+    "AWS S3",
+    "AWS Redshift",
+    "AWS RDS",
+    "AWS Lambda",
+    "AWS IAM",
+    "AWS Glue Crawler",
+    "AWS DMS",
+    "High Availability Solutions",
+    "Replication",
+    "Backup and Recovery",
+    "Capacity Planning",
+    "Python",
+    "PySpark",
+    "Data Warehousing",
+    "Performance Monitoring",
+    "Data Governance",
+    "Medallion Architecture"
+  ],
+  "certifications": [],
+  "projects": [
+      {
+        "name": "Medtech Evolution",
+        "description": "Architected secure healthcare databases for global markets, achieving 100% data accuracy during zero-downtime migrations while boosting query response speeds by 30%."
+      },
+      {
+        "name": "Paymentor Data Warehouse",
+        "description": "Designed and implemented a scalable data warehouse solution for a global client, integrating data from multiple sources and improving reporting efficiency by 40%."
+      },
+      {
+        "name": "Database Operations & Migration",
+        "description": "Led the migration of critical data to a new cloud-based platform, ensuring zero data loss and achieving a 25% reduction in query response times."
+      }
+  ],
+  "featured": [],
+  "recommendations": [],
+  "recent_posts": [],
+  "activity_notes": "Public activity currently appears to show more reactions/likes than original expert posting."
+}
