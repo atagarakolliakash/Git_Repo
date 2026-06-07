@@ -5,11 +5,11 @@ __pycache__/
 
 .idea/
 
+DataEngineerProject/SourceData/
+
 *.zip
 *.7z
 *.csv
 *.parquet
 *.db
 *.sqlite
-
-DataEngineerProject/SourceData/
