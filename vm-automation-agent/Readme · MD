@@ -1,0 +1,420 @@
+# VM Automation Agent
+
+Automatically start PostgreSQL VMs and seed them with test data when your system boots or wakes from sleep.
+
+## Features
+
+✅ **Automatic VM Startup** - Detects and starts all VMs with names starting with "pg"
+✅ **PostgreSQL Database Seeding** - Automatically inserts 10-15 random records per table
+✅ **System Event Monitoring** - Triggers on system restart or wake from sleep
+✅ **Desktop Notifications** - Shows popup when data import completes
+✅ **Cross-Platform** - Works on Windows, macOS, and Linux
+✅ **Configurable** - JSON-based configuration for easy customization
+✅ **CLI Interface** - Command-line tools for testing and management
+
+## Requirements
+
+- Python 3.8+
+- Oracle VirtualBox with PostgreSQL VMs
+- PostgreSQL database running in VirtualBox VMs
+- psycopg2 (installed automatically)
+
+## Installation
+
+### Quick Installation
+
+```bash
+# Clone or download the package
+cd vm-automation-agent
+
+# Install in development mode (recommended for local development)
+pip install -e .
+
+# Or install normally
+pip install .
+```
+
+### Manual Installation
+
+```bash
+pip install psycopg2-binary click
+```
+
+## Configuration
+
+The agent stores configuration in `~/.vm_agent/config.json`
+
+### Initialize Configuration
+
+```bash
+vm-agent init-config
+```
+
+This creates a default configuration file that you can edit.
+
+### Manual Configuration
+
+Edit `~/.vm_agent/config.json`:
+
+```json
+{
+    "database": {
+        "host": "localhost",
+        "port": 5432,
+        "user": "postgres",
+        "password": "postgres",
+        "database": "postgres",
+        "connection_timeout": 30,
+        "max_retries": 5,
+        "retry_delay": 5
+    },
+    "virtualbox": {
+        "vbox_path": null,
+        "vm_name_pattern": "pg*",
+        "startup_timeout": 120,
+        "health_check_interval": 5,
+        "max_startup_attempts": 3
+    },
+    "notification": {
+        "enable_popup": true,
+        "title": "VM Automation Agent",
+        "show_duration": 5
+    },
+    "logging": {
+        "log_level": "INFO",
+        "log_file": null,
+        "log_dir": "~/.vm_agent/logs"
+    }
+}
+```
+
+### Configure via CLI
+
+```bash
+# Configure database connection
+vm-agent configure \
+    --db-host 192.168.1.100 \
+    --db-port 5432 \
+    --db-user admin \
+    --db-password mypassword
+
+# Configure VirtualBox path
+vm-agent configure --vbox-path /usr/local/bin/VBoxManage
+
+# Enable/disable notifications
+vm-agent configure --disable-notifications
+```
+
+## Usage
+
+### Run Once
+
+Execute the automation workflow immediately:
+
+```bash
+vm-agent run
+```
+
+### Show Status
+
+Check current agent status and found VMs:
+
+```bash
+vm-agent status
+```
+
+### List VMs
+
+List all PostgreSQL VMs and their states:
+
+```bash
+vm-agent list-vms
+```
+
+### Run as Daemon
+
+Start the agent to listen for system wake/restart events:
+
+```bash
+vm-agent daemon
+```
+
+The daemon will:
+1. Run initial automation on startup
+2. Monitor for system sleep/wake events
+3. Monitor for system restart events
+4. Execute automation when events occur
+
+To stop: Press `Ctrl+C`
+
+### Show Configuration
+
+Display the current configuration:
+
+```bash
+vm-agent show-config
+```
+
+## Python API
+
+Use the agent programmatically:
+
+```python
+from vm_agent import VMAutomationAgent
+
+# Create agent instance
+agent = VMAutomationAgent()
+
+# Configure if needed
+agent.configure(
+    db_host='192.168.1.100',
+    db_port=5432,
+    db_user='postgres',
+    db_password='postgres'
+)
+
+# Run automation once
+agent.run_once()
+
+# Or start as daemon
+agent.start()
+# ... do other things ...
+agent.stop()
+
+# Get status
+status = agent.get_status()
+print(status)
+```
+
+## How It Works
+
+### Workflow
+
+```
+System Boot/Wake Event
+        ↓
+    Agent Triggers
+        ↓
+Find PostgreSQL VMs (names starting with "pg")
+        ↓
+    Start VMs
+        ↓
+Wait for VMs to be Running
+        ↓
+Connect to PostgreSQL Database
+        ↓
+Detect Tables & Schemas
+        ↓
+Insert Random Sample Data (10-15 records per table)
+        ↓
+Verify Data Insertion
+        ↓
+Show Desktop Notification
+        ↓
+    Log Completion
+```
+
+### Data Generation
+
+The agent intelligently generates random data based on column types:
+
+- **Integer columns**: Random integers (1-10000)
+- **Float/Decimal**: Random floats (10-1000)
+- **Text/Varchar**: 
+  - Email columns: `user@example.com`
+  - Phone columns: `+1 XXXXXXXXXX`
+  - Name columns: Random 15-char string
+  - Other: Random alphanumeric
+- **Date/Timestamp**: Random dates within last 365 days
+- **Boolean**: Random True/False
+
+## System Event Monitoring
+
+### Windows
+
+Uses PowerShell and registry monitoring to detect:
+- Sleep/Wake events
+- System restart
+
+### macOS
+
+Uses NSWorkspace notifications to detect:
+- System sleep
+- System wake
+
+### Linux
+
+Uses systemd-logind D-Bus signals to detect:
+- System sleep  
+- System wake
+
+Fallback polling-based monitoring available for all platforms.
+
+## Logging
+
+Logs are stored in `~/.vm_agent/logs/`
+
+Log file format: `vm_agent_YYYYMMDD.log`
+
+Set log level in configuration:
+- `DEBUG`: Verbose logging
+- `INFO`: Normal logging (default)
+- `WARNING`: Warnings only
+- `ERROR`: Errors only
+
+## Troubleshooting
+
+### VBoxManage not found
+
+The agent searches common installation paths. If not found:
+
+1. Find your VBoxManage path:
+   ```bash
+   which VBoxManage           # macOS/Linux
+   where VBoxManage.exe       # Windows
+   ```
+
+2. Configure it:
+   ```bash
+   vm-agent configure --vbox-path /path/to/VBoxManage
+   ```
+
+### Database Connection Failed
+
+1. Verify PostgreSQL is running in VMs:
+   ```bash
+   vm-agent list-vms
+   ```
+
+2. Test connection manually:
+   ```bash
+   psql -h localhost -U postgres -d postgres
+   ```
+
+3. Check and update credentials:
+   ```bash
+   vm-agent configure --db-host <host> --db-port <port>
+   ```
+
+### No PostgreSQL VMs Found
+
+1. Verify VM names start with "pg":
+   ```bash
+   vm-agent list-vms
+   ```
+
+2. Rename VMs if needed or update the pattern in config.json
+
+### Check Logs
+
+View the latest log file:
+
+```bash
+tail -f ~/.vm_agent/logs/vm_agent_$(date +%Y%m%d).log
+```
+
+## Platform-Specific Setup
+
+### Windows
+
+1. Install VirtualBox from [virtualbox.org](https://www.virtualbox.org)
+2. Install Python 3.8+
+3. Install the package:
+   ```bash
+   pip install vm-automation-agent
+   ```
+
+4. Add to Windows Task Scheduler for automatic startup (optional):
+   ```bash
+   # Run as administrator
+   schtasks /create /tn "VM Automation Agent" /tr "python -m vm_agent.cli daemon" /sc onstart /ru %USERNAME%
+   ```
+
+### macOS
+
+1. Install VirtualBox via Homebrew:
+   ```bash
+   brew install --cask virtualbox
+   ```
+
+2. Install Python 3.8+
+3. Install the package:
+   ```bash
+   pip install vm-automation-agent
+   ```
+
+4. Add to LaunchDaemon for automatic startup (optional):
+   - Create `~/Library/LaunchAgents/com.vmautomation.agent.plist`
+   - Configure to run on login
+
+### Linux
+
+1. Install VirtualBox:
+   ```bash
+   sudo apt-get install virtualbox  # Ubuntu/Debian
+   # or
+   sudo yum install VirtualBox      # RHEL/CentOS
+   ```
+
+2. Install Python 3.8+
+3. Install the package:
+   ```bash
+   pip install vm-automation-agent
+   ```
+
+4. Add to systemd or cron for automatic startup
+
+## Development
+
+### Install with dev dependencies
+
+```bash
+pip install -e ".[dev]"
+```
+
+### Run tests
+
+```bash
+pytest tests/
+```
+
+### Code quality
+
+```bash
+black vm_agent/
+flake8 vm_agent/
+```
+
+## Architecture
+
+```
+vm_agent/
+├── __init__.py              # Package initialization
+├── agent.py                 # Main orchestrator
+├── config.py                # Configuration management
+├── logger.py                # Logging setup
+├── virtualbox.py            # VirtualBox VM control
+├── database.py              # PostgreSQL operations
+├── notification.py          # Desktop notifications
+├── system_events.py         # System event monitoring
+└── cli.py                   # Command-line interface
+```
+
+## License
+
+MIT License - Feel free to modify and distribute
+
+## Support
+
+For issues, questions, or contributions, please refer to the documentation or check the logs at `~/.vm_agent/logs/`
+
+## Version History
+
+### v1.0.0
+- Initial release
+- VM startup automation
+- Database seeding
+- System event monitoring
+- Desktop notifications
+- CLI interface
+- Cross-platform support

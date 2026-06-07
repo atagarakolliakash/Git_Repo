@@ -1,0 +1,13 @@
+{
+  "Source_data_path" : "D:\\Git_Repo\\ETL_Migration\\ETL_Migration\\Source_data",
+  "Source_CSV_Path": "D:\\Git_Repo\\ETL_Migration\\ETL_Migration\\Source_data\\CSV",
+  "Source_Json_Path": "D:\\Git_Repo\\ETL_Migration\\ETL_Migration\\Source_data\\JSON",
+  "Target_DB_Host": "AKASH",
+  "Target_DB_Instance": "SQL2022",
+  "Target_DB_Username": "etl",
+  "Target_DB_Password": "etl@123",
+  "Target_DB_Port": "1443"
+
+}
+
+
